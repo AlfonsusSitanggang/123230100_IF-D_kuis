@@ -1,62 +1,66 @@
-package pages;
+package quiz.pages;
 
-import java.awt.PopupMenu;
-import  javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.security.MessageDigest;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class HalamanLogin extends JFrame {
-    private JtextField usernameField;
-    private JPaswordField PasswordField;
-    private JButton LoginButton;
-    setVisible(true) ;
-    public HalamanLogin(){
+    private JTextField usernameField;
+    private JPasswordField passwordField;
+    private JButton loginButton;
+    private String username;
+
+    public HalamanLogin() {
         setTitle("Halaman Login");
-        setSize(300,200);
+        setSize(300, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setLayout(null);
+        setLayout(null); 
         
-        JLabel labelUsername = new JLabel ("Username :");
+        JLabel welcomeLabel = new JLabel("Selamat datang di aplikasi 123230066");
+        welcomeLabel.setBounds(40, 5, 220, 20);
+        add(welcomeLabel);
+
+        JLabel labelUsername = new JLabel("Username:");
         usernameField = new JTextField();
-        JLabel labelPassword = new JLabel ("Password :");
-        JPasswordField = new JPasswordField();
-        JButton loginButton = new JButton("login");
-        
-        labelUsername.setBounds(20, 20, 80, 20);
-        usernameField.setBounds(100, 20, 100, 20);
-        labelPasword.setBounds(20, 50, 80, 20);
-        passwordField.setBounds(100, 50, 100, 20);
-        loginButton.setBounds(100, 90, 100,30);
-        
+        JLabel labelPassword = new JLabel("Password:");
+        passwordField = new JPasswordField();
+        loginButton = new JButton("Login");
+
+        labelUsername.setBounds(20, 35, 80, 20);
+        usernameField.setBounds(100, 35, 150, 20);
+        labelPassword.setBounds(20, 65, 80, 20);
+        passwordField.setBounds(100, 65, 150, 20);
+        loginButton.setBounds(100, 105, 100, 30);
+
         add(labelUsername);
         add(usernameField);
         add(labelPassword);
         add(passwordField);
-        add(LogginButton);
+        add(loginButton);
+
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                username = usernameField.getText().trim();
+                String password = new String(passwordField.getPassword());
+                if (username.isEmpty()) {
+                    JOptionPane.showMessageDialog(HalamanLogin.this, "Username tidak boleh kosong!", "Error", JOptionPane.ERROR_MESSAGE);
+                    usernameField.setText("");
+                    passwordField.setText("");
+                } else if (password.isEmpty()) {
+                    JOptionPane.showMessageDialog(HalamanLogin.this, "Password tidak boleh kosong!", "Error", JOptionPane.ERROR_MESSAGE);
+                    usernameField.setText("");
+                    passwordField.setText("");
+                } else if (!password.equals("pbo-d")) {
+                    JOptionPane.showMessageDialog(HalamanLogin.this, "Password salah!", "Error", JOptionPane.ERROR_MESSAGE);
+                }else {
+                    dispose();
+                    new HalamanUtama(username).setVisible(true);
+                }
+            }
+        });
+
+        setVisible(true);
     }
-    
-    loginButton.addActionListener (new ActionListener(){
-        @Override
-        
-        public void actionPerformed(ActioEvent a){
-        string username = usernameField.getText();
-        string password = new String(passwordField.getPassword());       
-        
-        if(username.equalsIgnoreCase("pbo")) && password.equalsignoreCase90("if-d"){      
-            JOptionPane.showMessageDialog(HalamanLogin.this, "Login Berhasil");      
-            newHalamanUtama().setVisible(true);        
-            dispose();   
-        }else {      
-            JOptionPane.showMessageDialog(HalamanLogin.this,"Error", JOptionPane.ERROR>Message);   
-        }
-    }
-        return null;
-    
-    };
-   
-    
-    
-    
 }
