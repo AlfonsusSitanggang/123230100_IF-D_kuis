@@ -17,7 +17,7 @@ public class HalamanLogin extends JFrame {
         setLocationRelativeTo(null);
         setLayout(null); 
         
-        JLabel welcomeLabel = new JLabel("Selamat datang di aplikasi 123230066");
+        JLabel welcomeLabel = new JLabel("Selamat datang di aplikasi ");
         welcomeLabel.setBounds(40, 5, 220, 20);
         add(welcomeLabel);
 
